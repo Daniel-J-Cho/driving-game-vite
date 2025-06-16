@@ -16,6 +16,7 @@ services:
       - 5001:5000
     depends_on:
       - database
+    command: sleep infinity
 
   database:
     image: postgres:17-alpine
