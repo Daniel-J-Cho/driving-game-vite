@@ -30,6 +30,6 @@
 		}
 	},
 	"postCreateCommand": "npm install",
-	"forwardPorts": [3000, 5000],
+	"forwardPorts": [3000, 5001],
 	"shutdownAction": "stopCompose"
 }
