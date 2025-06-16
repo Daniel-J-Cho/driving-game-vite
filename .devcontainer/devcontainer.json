@@ -5,18 +5,18 @@
 	"workspaceFolder": "/workspaces/driving-game-vite",
 
 	"mounts": [
-		"source=${env:SSH_AUTH_SOCK},target=/tmp/ssh-agent.sock,type=bind",
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
 	],
-	"remoteEnv": {
-    	"SSH_AUTH_SOCK": "/tmp/ssh-agent.sock"
-  	},
 
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"installZsh": true,
 			"installOhMyZsh": true,
 			"upgradePackages": true
+		},
+		"ghcr.io/devcontainers/features/sshd:1": {
+			"version": "latest",
+			"forwardAgent": true
 		}
 	},
 	"customizations": {
