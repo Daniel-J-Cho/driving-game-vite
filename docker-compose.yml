@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   dev:
-    image: mcr.microsoft.com/devcontainers/javascript-node:22
+    image: mcr.microsoft.com/devcontainers/javascript-node:20
+    platform: linux/arm64
     environment:
       DB_HOST: database
       DB_USER: driving_game_user
@@ -10,6 +11,7 @@ services:
       DB_NAME: driving_game_db
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - .:/workspaces/driving-game-vite
     ports:
       - 3000:3000
       - 5001:5000
@@ -17,7 +19,7 @@ services:
       - database
 
   database:
-    image: postgres:17-alpine
+    image: postgres:15-alpine
     environment:
       POSTGRES_DB: driving_game_db
       POSTGRES_USER: driving_game_user
@@ -36,5 +38,4 @@ services:
     restart: always
 
 volumes:
-  dev_home:
   db_data:
