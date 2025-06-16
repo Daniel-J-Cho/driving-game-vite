@@ -3,6 +3,7 @@
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "dev",
 	"workspaceFolder": "/workspaces/driving-game-vite",
+	"remoteUser": "vscode",
 
 	"mounts": [
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
