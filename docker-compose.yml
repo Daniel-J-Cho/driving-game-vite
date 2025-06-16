@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  dev:
+    image: mcr.microsoft.com/devcontainers/javascript-node:22
+    environment:
+      DB_HOST: database
+      DB_USER: driving_game_user
+      DB_PASSWORD: driving_game_password
+      DB_NAME: driving_game_db
+    volumes:
+      - dev_home:/home/node
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3000:3000
+      - 5000:5000
+    depends_on:
+      - database
+
+  database:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: driving_game_db
+      POSTGRES_USER: driving_game_user
+      POSTGRES_PASSWORD: driving_game_password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  pgweb:
+    image: sosedoff/pgweb:0.11.11
+    environment:
+      - DATABASE_URL=postgres://driving_game_user:driving_game_password@database/driving_game_db?sslmode=disable
+    ports:
+      - 8081:8081
+    depends_on:
+      - database
+    restart: always
+
+volumes:
+  dev_home:
+  db_data:
