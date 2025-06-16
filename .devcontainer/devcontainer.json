@@ -2,7 +2,6 @@
 	"name": "Node.js & JavaScript",
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "dev",
-	"workspaceFolder": "/workspaces/driving-game-vite",
 
 	"mounts": [
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
