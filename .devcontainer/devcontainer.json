@@ -2,9 +2,11 @@
 	"name": "Node.js & JavaScript",
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "dev",
-	"workspaceFolder": "/workspaces/driving-game-vite",
+	"workspaceFolder": "/home/dev/workspace",
 
 	"mounts": [
+		"source=${containerWorkspaceFolderBasename}-home_dev,target=/home/dev",
+    		"source=${containerWorkspaceFolderBasename}-postgres_data,target=/var/lib/postgresql",
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
 	],
 
@@ -29,6 +31,7 @@
 			]
 		}
 	},
-	"forwardPorts": [3000, 5001, 8082],
+	"postCreateCommand": "[ ! -f package-lock.json ] || npm ci",
+	"forwardPorts": [5173, 5432, 8082],
 	"shutdownAction": "stopCompose"
 }
