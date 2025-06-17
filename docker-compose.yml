@@ -22,21 +22,24 @@ services:
 
   postgres:
     image: postgres:15-alpine
+    platform: linux/arm64
     environment:
       POSTGRES_DB: dev
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: dev
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
 
   pgweb:
     image: sosedoff/pgweb:0.11.11
     environment:
-      - DATABASE_URL=postgres://driving_game_user:driving_game_password@database/driving_game_db?sslmode=disable
+      - DATABASE_URL=postgres://dev:dev@postgres/dev?sslmode=disable
     ports:
       - 8082:8081
     depends_on:
-      - database
+      - postgres
     restart: always
 
 volumes:
