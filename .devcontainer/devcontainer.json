@@ -3,12 +3,7 @@
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "dev",
 	"workspaceFolder": "/home/dev/workspace",
-
-	"mounts": [
-		"source=${containerWorkspaceFolderBasename}-home_dev,target=/home/dev",
-    		"source=${containerWorkspaceFolderBasename}-postgres_data,target=/var/lib/postgresql",
-		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-	],
+	"remoteUser": "dev",
 
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
